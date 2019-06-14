@@ -1,0 +1,104 @@
+minimum_size 300 200
+maximum_width 300
+
+gap_x 30
+gap_y 60
+alignment top_right
+update_interval 1
+use_xft yes
+xftfont cantarell:size=7:normal
+own_window yes
+own_window_type conky
+own_window_transparent yes
+own_window_colour 000000
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_argb_visual yes
+own_window_argb_value 255
+
+double_buffer yes
+draw_shades yes
+draw_graph_borders no
+uppercase yes
+default_bar_size 0 20
+default_graph_size 0 15
+border_inner_margin 2
+default_color grey
+color5 bfff80
+blue 0045cc
+green 00ff00
+TEXT
+
+
+${hr 1}
+${image ~/.conky/ycomb.png -p 0,12 -s 300x22 }
+${alignc}'${nodename}'
+${alignc}linux ${kernel}
+
+processor ${hr 1}
+${alignc}${exec lscpu | grep -i "model name" | cut -c 24-}
+${alignc}${freq}MHz
+${alignc}${processes} threads
+
+
+cpu0${alignr}${cpu cpu1}%
+${cpugraph cpu1 ${color5} ff00ff}
+#${cpubar cpu1}
+
+
+cpu1${alignr}${cpu cpu2}%
+${cpugraph cpu2 ff0000 ff004f}
+#${cpubar cpu2}
+
+cpu2${alignr}${cpu cpu3}%
+${cpugraph cpu3 f9999f ff00f2}
+#${cpubar cpu3}
+
+cpu3${alignr}${cpu cpu4}%
+${cpugraph cpu4}
+#${cpubar cpu4}
+
+
+cpu4${alignr}${cpu cpu5}%
+${cpugraph cpu5}
+#${cpubar cpu5}
+
+
+cpu5${alignr}${cpu cpu6}%
+${cpugraph cpu6}
+#${cpubar cpu6}
+
+
+
+
+cpu usage${alignr} %
+${top name 1}${alignr}${top cpu 1}
+${top name 2}${alignr}${top cpu 2}
+${top name 3}${alignr}${top cpu 3}
+${top name 4}${alignr}${top cpu 4}
+total${alignr}${cpu}%
+
+memory ${hr 1}
+${color ffffff}${membar}
+${color grey}${memperc}%
+ram usage${alignr} %
+
+
+${top_mem name 1}${alignr}${top_mem mem 1}
+${top_mem name 2}${alignr}${top_mem mem 2}
+${top_mem name 3}${alignr}${top_mem mem 3}
+${top_mem name 4}${alignr}${top_mem mem 4}
+total${alignr}${memperc}%
+${alignr}(${mem})
+
+disks ${hr 1}
+/${alignr}${fs_size /}
+${fs_bar /}
+${fs_used_perc /}%
+(${fs_used /})
+
+network ${hr 1}
+down ${downspeed enp2s0}${alignr}up ${upspeed enp2s0}
+${downspeedgraph enp2s0 32, 96}${alignr}${upspeedgraph enp2s0 32, 96}
+total ${totaldown enp2s0}${alignr}total ${totalup enp2s0}
+
+
